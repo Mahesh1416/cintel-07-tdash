@@ -1,3 +1,4 @@
+#Imports at the top
 import seaborn as sns
 from faicons import icon_svg
 
@@ -5,11 +6,13 @@ from shiny import reactive
 from shiny.express import input, render, ui
 import palmerpenguins 
 
+#Loading the data into an initial Pandas DataFrame
 df = palmerpenguins.load_penguins()
 
-ui.page_opts(title="Penguins dashboard", fillable=True)
+#Creating a page title
+ui.page_opts(title="Mahesh Bashyal's Penguins dashboard", fillable=True)
 
-
+#This is needed for selecting the category
 with ui.sidebar(title="Filter controls"):
     ui.input_slider("mass", "Mass", 2000, 6000, 6000)
     ui.input_checkbox_group(
@@ -22,7 +25,7 @@ with ui.sidebar(title="Filter controls"):
     ui.h6("Links")
     ui.a(
         "GitHub Source",
-        href="https://github.com/denisecase/cintel-07-tdash",
+        href="https://github.com/Mahesh1416/cintel-07-tdash",
         target="_blank",
     )
     ui.a(
@@ -47,7 +50,7 @@ with ui.sidebar(title="Filter controls"):
         target="_blank",
     )
 
-
+#This is needed to select the number of penguins
 with ui.layout_column_wrap(fill=False):
     with ui.value_box(showcase=icon_svg("earlybirds")):
         "Number of penguins"
@@ -85,7 +88,7 @@ with ui.layout_columns():
             )
 
     with ui.card(full_screen=True):
-        ui.card_header("Penguin da")
+        ui.card_header("Penguin data")
 
         @render.data_frame
         def summary_statistics():
@@ -107,3 +110,7 @@ def filtered_df():
     filt_df = df[df["species"].isin(input.species())]
     filt_df = filt_df.loc[filt_df["body_mass_g"] < input.mass()]
     return filt_df
+    
+    
+
+    
