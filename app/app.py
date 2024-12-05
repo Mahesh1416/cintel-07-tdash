@@ -88,7 +88,7 @@ with ui.layout_columns():
             )
 
     with ui.card(full_screen=True):
-        ui.card_header("Penguin data")
+        ui.card_header("Penguin Data")
 
         @render.data_frame
         def summary_statistics():
